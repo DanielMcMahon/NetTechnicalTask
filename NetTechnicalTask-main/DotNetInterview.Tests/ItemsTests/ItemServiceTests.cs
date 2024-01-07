@@ -9,10 +9,15 @@ namespace DotNetInterview.Tests.ItemsTests;
 [TestFixture]
 public class ItemServiceTests
 {
-
     private DataContext _dataContext;
     private ItemService _itemService;
-    
+
+    private Item ItemToCreate => new()
+    {
+        Id = Guid.Parse("90884127-b12c-4a58-85f3-e99fcdbd5b2b"),
+        Name = "CreatedItem",
+    };
+
     [SetUp]
     public void Setup()
     {
@@ -26,35 +31,41 @@ public class ItemServiceTests
     }
 
     [Test]
-    public Task ItemService_CreateItemAsync_Returns_NewCreateItem()
+    public async Task ItemService_CreateItemAsync_Returns_NewCreateItem()
     {
-        return Task.FromResult(true);
+        var result = await _itemService.CreateItemAsync(ItemToCreate);
+        Assert.Equals(result.Name, "CreatedItem");
     }
 
     [Test]
-    public Task ItemService_UpdateItemAsync_Returns_UpdatedItem()
+    public async Task ItemService_UpdateItemAsync_Returns_UpdatedItem()
     {
-        return Task.FromResult(true);
+        var itemToUpdate = ItemToCreate;
+        itemToUpdate.Reference = "001";
+        var result = await _itemService.UpdateItemAsync(itemToUpdate);
+        Assert.Equals(result.Reference, "001");
     }
 
     [Test]
-    public Task ItemService_GetItemsAsync_Returns_ReadonlyList()
+    public async Task ItemService_GetItemsAsync_Returns_ReadonlyList()
     {
-        return Task.FromResult(true);
+        var results = await _itemService.GetItemsAsync();
+        Assert.IsAssignableFrom<IReadOnlyList<Item>>(results);
+        Assert.Equals(results.Count, 4);
     }
 
     [Test]
-    public Task ItemService_GetItemByIdAsync_Returns_ItemSpecifiedById()
+    public async Task ItemService_GetItemByIdAsync_Returns_ItemSpecifiedById()
     {
-        return Task.FromResult(true);
+        var requestedItem = await _itemService.GetItemByIdAsync(new Guid("90884127-b12c-4a58-85f3-e99fcdbd5b2b"));
+        Assert.Equals(requestedItem.Name, "CreatedItem");
+        Assert.Equals(requestedItem.Reference, "001");
     }
 
     [Test]
-    public Task ItemsService_DeleteItemAsync_Returns_True_ForFoundItem()
+    public async Task ItemsService_DeleteItemAsync_Returns_True_ForFoundItem()
     {
-        return Task.FromResult(true);
+        var isDeleted = await _itemService.DeleteItemAsync(new Guid("90884127-b12c-4a58-85f3-e99fcdbd5b2b"));
+        Assert.True(isDeleted);
     }
-
-
-
 }
