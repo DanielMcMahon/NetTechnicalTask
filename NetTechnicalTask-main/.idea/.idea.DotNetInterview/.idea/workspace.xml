@@ -8,14 +8,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74edafce-e301-4c56-8b52-003fac06789b" name="Changes" comment="Add tests for discount when qty is over a certain threshold.">
-      <change afterPath="$PROJECT_DIR$/DotNetInterview.API/Providers/DateTimeProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DotNetInterview.API/Providers/IDateTimeProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DotNetInterview.Tests/MockDateTimeProvider.cs" afterDir="false" />
+    <list default="true" id="74edafce-e301-4c56-8b52-003fac06789b" name="Changes" comment="Added date time provider, so a mocked provider can be used for testing">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DotNetInterview.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DotNetInterview.Tests/ItemsTests/ItemControllerTests.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +32,8 @@
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/IItemService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/IItemService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/ItemService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DotNetInterview.API/Providers/IDateTimeProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" root0="SKIP_HIGHLIGHTING" />
@@ -117,7 +119,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704648842466</updated>
-      <workItem from="1704648844308" duration="9464000" />
+      <workItem from="1704648844308" duration="10309000" />
     </task>
     <task id="LOCAL-00001" summary=".idea files">
       <option name="closed" value="true" />
@@ -175,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704657670491</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added date time provider, so a mocked provider can be used for testing">
+      <option name="closed" value="true" />
+      <created>1704659033897</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1704659033897</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,25 +201,7 @@
     <MESSAGE value="Add failing unit tests" />
     <MESSAGE value="Added working unit tests" />
     <MESSAGE value="Add tests for discount when qty is over a certain threshold." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add tests for discount when qty is over a certain threshold." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/DotNetInterview.API/Items/ItemService.cs</url>
-          <line>39</line>
-          <properties documentPath="C:\Github\NetTechnicalTask\NetTechnicalTask\NetTechnicalTask-main\DotNetInterview.API\Items\ItemService.cs" initialLine="39" containingFunctionPresentation="Method 'CalculateCurrentPrice'">
-            <startOffsets>
-              <option value="1262" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1353" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Added date time provider, so a mocked provider can be used for testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added date time provider, so a mocked provider can be used for testing" />
   </component>
 </project>

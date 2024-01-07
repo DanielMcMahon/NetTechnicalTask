@@ -2,6 +2,7 @@
 
 public class ItemDTO
 {
+    public Guid Id { get; set; }
     public string Ref { get; set; }
     public string ItemName { get; set; }
     public string OriginalPrice { get; set; }

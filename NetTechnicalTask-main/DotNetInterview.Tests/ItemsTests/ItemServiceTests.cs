@@ -22,6 +22,9 @@ public class ItemServiceTests
         Reference = "000"
     };
 
+    /// <summary>
+    /// Tuesday 2nd January 2024, is not a monday and is at midnight.
+    /// </summary>
     private DateTime TheDate => new(2024, 01, 02);
 
     [SetUp]
@@ -86,7 +89,7 @@ public class ItemServiceTests
     }
 
     [Test]
-    public async Task ItemService_GetItemsAsync_Prices_CalculatedCorrectly_ForMondayBetweenTimes()
+    public async Task ItemService_GetItemsAsync_Prices_CalculatedCorrectly_ForMondayAt12PM()
     {
         DateTime monday = new DateTime(2024,01,01,12,00,00);
         

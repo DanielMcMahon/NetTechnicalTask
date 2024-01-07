@@ -25,16 +25,26 @@ public class ItemService : IItemService
     {
         return await _dataContext.Items.Select(x => new ItemDTO()
             {
+                Id = x.Id,
                 Ref = x.Reference,
                 OriginalPrice = $"{x.Price:C}",
-                CurrentPrice = CalculateCurrentPrice(x.Price, x.Variations.Sum(x => x.Quantity)),
+                CurrentPrice = CalculateCurrentPrice(x.Price, x.Variations.Sum(v => v.Quantity)),
                 ItemName = x.Name,
-                Status = x.Variations.Any() ? $"In Stock ({x.Variations.Sum(x => x.Quantity)})" : "Sold out",
+                Status = x.Variations.Any() ? $"In Stock ({x.Variations.Sum(v => v.Quantity)})" : "Sold out",
             })
             .AsNoTracking()
             .ToListAsync();
     }
 
+    /// <summary>
+    /// Calculates the current prices set from rules in the task requirements.
+    /// As this is a separate method, this will run in memory and iterate through each record. and will not generate SQL on the server.
+    /// Pro: Being able to calculate this in code
+    /// Con: Subject to slow performance once the data set gets too big. 
+    /// </summary>
+    /// <param name="originalPrice"></param>
+    /// <param name="qty"></param>
+    /// <returns></returns>
     private static string CalculateCurrentPrice(decimal originalPrice, int qty)
     {
         if (_dateTimeProvider.Now is {DayOfWeek: DayOfWeek.Monday, Hour: >= 12 and < 17} && qty > 0)
@@ -51,20 +61,21 @@ public class ItemService : IItemService
     public Task<Item?> GetItemByIdAsync(Guid id)
     {
         return _dataContext.Items.Select(x => new Item()
-        {
-            Id = x.Id,
-            Reference = x.Reference,
-            Price = x.Price,
-            Name = x.Name,
-            Variations = x.Variations.Select(v => new Variation()
-                {
-                    Quantity = v.Quantity,
-                    Size = v.Size,
-                    Id = v.Id,
-                    ItemId = v.ItemId
-                })
-                .ToList()
-        }).Where(x => x.Id == id).SingleOrDefaultAsync();
+            {
+                Id = x.Id,
+                Reference = x.Reference,
+                Price = x.Price,
+                Name = x.Name,
+                Variations = x.Variations.Select(v => new Variation()
+                    {
+                        Quantity = v.Quantity,
+                        Size = v.Size,
+                        Id = v.Id,
+                        ItemId = v.ItemId
+                    })
+                    .ToList()
+            }).Where(x => x.Id == id)
+            .SingleOrDefaultAsync();
     }
 
     public async Task<Item> CreateItemAsync(Item item)
@@ -79,18 +90,22 @@ public class ItemService : IItemService
     {
         var itemToUpdate = await _dataContext.Items.Where(x => x.Id == item.Id).SingleOrDefaultAsync();
         if (itemToUpdate is null) throw new ArgumentNullException("Cannot find item to update");
+        
         itemToUpdate.Name = item.Name;
         itemToUpdate.Reference = item.Reference;
         itemToUpdate.Price = item.Price;
+        
         await _dataContext.SaveChangesAsync();
         return item;
     }
 
     public async Task<bool> DeleteItemAsync(Guid id)
     {
-        var item = new Item() {Id = id};
+        var item = new Item {Id = id};
+        
         var entityEntry = _dataContext.Items.Attach(item);
         entityEntry.State = EntityState.Deleted;
+        
         return await _dataContext.SaveChangesAsync() > 0;
     }
 }

@@ -1,5 +1,6 @@
 using DotNetInterview.API;
 using DotNetInterview.API.Items;
+using DotNetInterview.API.Providers;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ var connection = new SqliteConnection("Data Source=DotNetInterview;Mode=Memory;C
 connection.Open();
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlite(connection));
 builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<IDateTimeProvider, DateTimeProvider>();
 
 var app = builder.Build();
 
