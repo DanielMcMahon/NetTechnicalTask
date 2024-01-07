@@ -46,7 +46,7 @@ public class ItemController : ControllerBase
         try
         {
             var result = await _itemService.CreateItemAsync(item);
-            return Created(new Uri($"api/v1/Item/{result.Id}"), result);
+            return Created($"api/v1/Item/{result.Id}", result);
         }
         catch (Exception e)
         {
