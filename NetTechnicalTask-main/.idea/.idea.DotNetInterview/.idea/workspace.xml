@@ -8,14 +8,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74edafce-e301-4c56-8b52-003fac06789b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemDTO.cs" afterDir="false" />
+    <list default="true" id="74edafce-e301-4c56-8b52-003fac06789b" name="Changes" comment="Add tests for discount when qty is over a certain threshold.">
+      <change afterPath="$PROJECT_DIR$/DotNetInterview.API/Providers/DateTimeProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DotNetInterview.API/Providers/IDateTimeProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DotNetInterview.Tests/MockDateTimeProvider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DotNetInterview.API/Items/IItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/IItemService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +30,10 @@
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/IItemService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/IItemService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/IItemService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/IItemService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/ItemService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DotNetInterview.API/Providers/IDateTimeProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -63,7 +66,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CodeLensConfigurable",
+    "settings.editor.selected.configurable": "preferences.editor.code.editing",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -114,7 +117,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704648842466</updated>
-      <workItem from="1704648844308" duration="7305000" />
+      <workItem from="1704648844308" duration="9464000" />
     </task>
     <task id="LOCAL-00001" summary=".idea files">
       <option name="closed" value="true" />
@@ -164,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704652973466</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add tests for discount when qty is over a certain threshold.">
+      <option name="closed" value="true" />
+      <created>1704657670490</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704657670491</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,23 +190,24 @@
     <MESSAGE value="Added test definitions into the ItemServiceTests.cs" />
     <MESSAGE value="Add failing unit tests" />
     <MESSAGE value="Added working unit tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added working unit tests" />
+    <MESSAGE value="Add tests for discount when qty is over a certain threshold." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add tests for discount when qty is over a certain threshold." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs</url>
-          <line>36</line>
-          <properties documentPath="C:\Github\NetTechnicalTask\NetTechnicalTask\NetTechnicalTask-main\DotNetInterview.Tests\ItemsTests\ItemServiceTests.cs" initialLine="36" containingFunctionPresentation="Method 'ItemService_CreateItemAsync_Returns_NewCreateItem'">
+          <url>file://$PROJECT_DIR$/DotNetInterview.API/Items/ItemService.cs</url>
+          <line>39</line>
+          <properties documentPath="C:\Github\NetTechnicalTask\NetTechnicalTask\NetTechnicalTask-main\DotNetInterview.API\Items\ItemService.cs" initialLine="39" containingFunctionPresentation="Method 'CalculateCurrentPrice'">
             <startOffsets>
-              <option value="1006" />
+              <option value="1262" />
             </startOffsets>
             <endOffsets>
-              <option value="1068" />
+              <option value="1353" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

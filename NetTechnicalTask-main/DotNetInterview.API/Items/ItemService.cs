@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using DotNetInterview.API.Domain;
+using DotNetInterview.API.Providers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Internal;
 
@@ -12,10 +13,12 @@ public class ItemService : IItemService
     /// </summary>
     private readonly DataContext _dataContext;
 
-    
-    public ItemService(DataContext dataContext)
+    private static IDateTimeProvider _dateTimeProvider;
+
+    public ItemService(DataContext dataContext, IDateTimeProvider dateTimeProvider)
     {
         _dataContext = dataContext;
+        _dateTimeProvider = dateTimeProvider;
     }
 
     public async Task<List<ItemDTO>> GetItemsAsync()
@@ -24,7 +27,7 @@ public class ItemService : IItemService
             {
                 Ref = x.Reference,
                 OriginalPrice = $"{x.Price:C}",
-                CurrentPrice = CalculateCurrentPrice(x.Price, x.Variations.Sum(x=>x.Quantity)),
+                CurrentPrice = CalculateCurrentPrice(x.Price, x.Variations.Sum(x => x.Quantity)),
                 ItemName = x.Name,
                 Status = x.Variations.Any() ? $"In Stock ({x.Variations.Sum(x => x.Quantity)})" : "Sold out",
             })
@@ -34,12 +37,14 @@ public class ItemService : IItemService
 
     private static string CalculateCurrentPrice(decimal originalPrice, int qty)
     {
+        if (_dateTimeProvider.Now is {DayOfWeek: DayOfWeek.Monday, Hour: >= 12 and < 17} && qty > 0)
+            return $"{(originalPrice * 0.5m):C}";
+
         return qty switch
         {
-            
             (> 5) and (<= 10) => $"{(originalPrice * 0.9m):C}",
             (> 10) => $"{(originalPrice * 0.8m):C}",
-            _=> $"{originalPrice:C}"
+            _ => $"{originalPrice:C}"
         };
     }
 
