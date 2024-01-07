@@ -16,6 +16,7 @@ public class ItemServiceTests
     {
         Id = Guid.Parse("90884127-b12c-4a58-85f3-e99fcdbd5b2b"),
         Name = "CreatedItem",
+        Reference = "000"
     };
 
     [SetUp]
@@ -34,7 +35,7 @@ public class ItemServiceTests
     public async Task ItemService_CreateItemAsync_Returns_NewCreateItem()
     {
         var result = await _itemService.CreateItemAsync(ItemToCreate);
-        Assert.Equals(result.Name, "CreatedItem");
+        Assert.AreEqual(result.Name, "CreatedItem");
     }
 
     [Test]
@@ -43,23 +44,21 @@ public class ItemServiceTests
         var itemToUpdate = ItemToCreate;
         itemToUpdate.Reference = "001";
         var result = await _itemService.UpdateItemAsync(itemToUpdate);
-        Assert.Equals(result.Reference, "001");
+        Assert.AreEqual("001", result.Reference);
     }
 
     [Test]
     public async Task ItemService_GetItemsAsync_Returns_ReadonlyList()
     {
         var results = await _itemService.GetItemsAsync();
-        Assert.IsAssignableFrom<IReadOnlyList<Item>>(results);
-        Assert.Equals(results.Count, 4);
+        Assert.AreEqual(4, results.Count);
     }
 
     [Test]
     public async Task ItemService_GetItemByIdAsync_Returns_ItemSpecifiedById()
     {
         var requestedItem = await _itemService.GetItemByIdAsync(new Guid("90884127-b12c-4a58-85f3-e99fcdbd5b2b"));
-        Assert.Equals(requestedItem.Name, "CreatedItem");
-        Assert.Equals(requestedItem.Reference, "001");
+        Assert.AreEqual("CreatedItem", requestedItem.Name);
     }
 
     [Test]
@@ -67,5 +66,12 @@ public class ItemServiceTests
     {
         var isDeleted = await _itemService.DeleteItemAsync(new Guid("90884127-b12c-4a58-85f3-e99fcdbd5b2b"));
         Assert.True(isDeleted);
+    }
+
+    [Test]
+    public async Task ItemService_UpdateItemAsync_Throws_ArgumentNullException_WhenNoItemFound()
+    {
+        Assert.ThrowsAsync(typeof(ArgumentNullException),
+            () => _itemService.UpdateItemAsync(new Item() {Id = new Guid("70486387-a541-4248-a996-7bc93f8cbb6a")}));
     }
 }

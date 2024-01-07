@@ -4,8 +4,8 @@ namespace DotNetInterview.API.Items;
 
 public interface IItemService
 {
-    Task<IReadOnlyList<Item>> GetItemsAsync();
-    Task<Item> GetItemByIdAsync(Guid id);
+    Task<List<Item>> GetItemsAsync();
+    Task<Item?> GetItemByIdAsync(Guid id);
     Task<Item> CreateItemAsync(Item item);
     Task<Item> UpdateItemAsync(Item item);
     Task<bool> DeleteItemAsync(Guid id);

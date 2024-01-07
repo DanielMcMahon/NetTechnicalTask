@@ -1,4 +1,6 @@
-﻿using DotNetInterview.API.Domain;
+﻿using System.Linq.Expressions;
+using DotNetInterview.API.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNetInterview.API.Items;
 
@@ -9,33 +11,73 @@ public class ItemService : IItemService
     /// </summary>
     private readonly DataContext _dataContext;
 
+
     public ItemService(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
 
-    public Task<IReadOnlyList<Item>> GetItemsAsync()
+    public async Task<List<Item>> GetItemsAsync()
     {
-        throw new NotImplementedException();
+        return await _dataContext.Items.Select(x => new Item()
+            {
+                Id = x.Id,
+                Reference = x.Reference,
+                Price = x.Price,
+                Name = x.Name,
+                Variations = x.Variations.Select(v => new Variation()
+                {
+                    Id = v.Id,
+                    Size = v.Size,
+                    Quantity = v.Quantity
+                }).ToList()
+            })
+            .AsNoTracking()
+            .ToListAsync();
     }
 
-    public Task<Item> GetItemByIdAsync(Guid id)
+    public Task<Item?> GetItemByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return _dataContext.Items.Select(x => new Item()
+        {
+            Id = x.Id,
+            Reference = x.Reference,
+            Price = x.Price,
+            Name = x.Name,
+            Variations = x.Variations.Select(v => new Variation()
+                {
+                    Quantity = v.Quantity,
+                    Size = v.Size,
+                    Id = v.Id
+                })
+                .ToList()
+        }).Where(x => x.Id == id).SingleOrDefaultAsync();
     }
 
-    public Task<Item> CreateItemAsync(Item item)
+    public async Task<Item> CreateItemAsync(Item item)
     {
-        throw new NotImplementedException();
+        ArgumentException.ThrowIfNullOrEmpty(item.Name);
+        var result = await _dataContext.Items.AddAsync(item);
+        await _dataContext.SaveChangesAsync();
+        return result.Entity;
     }
 
-    public Task<Item> UpdateItemAsync(Item item)
+    public async Task<Item> UpdateItemAsync(Item item)
     {
-        throw new NotImplementedException();
+        var itemToUpdate = await _dataContext.Items.Where(x => x.Id == item.Id).SingleOrDefaultAsync();
+        if (itemToUpdate is null) throw new ArgumentNullException("Cannot find item to update");
+        itemToUpdate.Name = item.Name;
+        itemToUpdate.Reference = item.Reference;
+        itemToUpdate.Price = item.Price;
+        await _dataContext.SaveChangesAsync();
+        return item;
     }
 
-    public Task<bool> DeleteItemAsync(Guid id)
+    public async Task<bool> DeleteItemAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var item = new Item() {Id = id};
+        var entityEntry = _dataContext.Items.Attach(item);
+        entityEntry.State = EntityState.Deleted;
+        return await _dataContext.SaveChangesAsync() > 0;
     }
 }
