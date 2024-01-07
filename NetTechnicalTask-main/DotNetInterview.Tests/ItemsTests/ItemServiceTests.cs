@@ -1,6 +1,7 @@
 ﻿using DotNetInterview.API;
 using DotNetInterview.API.Domain;
 using DotNetInterview.API.Items;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +12,7 @@ public class ItemServiceTests
 {
     private DataContext _dataContext;
     private ItemService _itemService;
-
+    
     private Item ItemToCreate => new()
     {
         Id = Guid.Parse("90884127-b12c-4a58-85f3-e99fcdbd5b2b"),
@@ -28,7 +29,9 @@ public class ItemServiceTests
             .UseSqlite(connection)
             .Options;
         _dataContext = new DataContext(options);
+        
         _itemService = new ItemService(_dataContext);
+        
     }
 
     [Test]
@@ -53,6 +56,23 @@ public class ItemServiceTests
         var results = await _itemService.GetItemsAsync();
         Assert.AreEqual(4, results.Count);
     }
+
+    [Test]
+    public async Task ItemService_GetItemsAsync_PricesCalculatedCorrectly()
+    {
+        var results = await _itemService.GetItemsAsync();
+        
+        var shorts = results.FirstOrDefault(x => x.Ref == "A123");
+        Assert.That(shorts.CurrentPrice, Is.EqualTo("£31.50"));
+
+        var tie = results.FirstOrDefault(x => x.Ref == "B456");
+        Assert.That(tie.CurrentPrice, Is.EqualTo("£15.00"));
+
+        var shoes = results.FirstOrDefault(x => x.Ref == "C789");
+        Assert.That(shoes.CurrentPrice, Is.EqualTo("£56.00"));
+    }
+    
+    
 
     [Test]
     public async Task ItemService_GetItemByIdAsync_Returns_ItemSpecifiedById()

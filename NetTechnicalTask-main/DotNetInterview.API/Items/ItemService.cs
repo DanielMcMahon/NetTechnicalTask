@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using DotNetInterview.API.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Internal;
 
 namespace DotNetInterview.API.Items;
 
@@ -11,29 +12,35 @@ public class ItemService : IItemService
     /// </summary>
     private readonly DataContext _dataContext;
 
-
+    
     public ItemService(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
 
-    public async Task<List<Item>> GetItemsAsync()
+    public async Task<List<ItemDTO>> GetItemsAsync()
     {
-        return await _dataContext.Items.Select(x => new Item()
+        return await _dataContext.Items.Select(x => new ItemDTO()
             {
-                Id = x.Id,
-                Reference = x.Reference,
-                Price = x.Price,
-                Name = x.Name,
-                Variations = x.Variations.Select(v => new Variation()
-                {
-                    Id = v.Id,
-                    Size = v.Size,
-                    Quantity = v.Quantity
-                }).ToList()
+                Ref = x.Reference,
+                OriginalPrice = $"{x.Price:C}",
+                CurrentPrice = CalculateCurrentPrice(x.Price, x.Variations.Sum(x=>x.Quantity)),
+                ItemName = x.Name,
+                Status = x.Variations.Any() ? $"In Stock ({x.Variations.Sum(x => x.Quantity)})" : "Sold out",
             })
             .AsNoTracking()
             .ToListAsync();
+    }
+
+    private static string CalculateCurrentPrice(decimal originalPrice, int qty)
+    {
+        return qty switch
+        {
+            
+            (> 5) and (<= 10) => $"{(originalPrice * 0.9m):C}",
+            (> 10) => $"{(originalPrice * 0.8m):C}",
+            _=> $"{originalPrice:C}"
+        };
     }
 
     public Task<Item?> GetItemByIdAsync(Guid id)
@@ -48,7 +55,8 @@ public class ItemService : IItemService
                 {
                     Quantity = v.Quantity,
                     Size = v.Size,
-                    Id = v.Id
+                    Id = v.Id,
+                    ItemId = v.ItemId
                 })
                 .ToList()
         }).Where(x => x.Id == id).SingleOrDefaultAsync();

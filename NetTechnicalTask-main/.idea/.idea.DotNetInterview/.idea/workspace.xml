@@ -8,10 +8,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74edafce-e301-4c56-8b52-003fac06789b" name="Changes" comment="Add failing unit tests">
+    <list default="true" id="74edafce-e301-4c56-8b52-003fac06789b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DotNetInterview/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DotNetInterview.API/Items/IItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/IItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.API/Items/ItemService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +28,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/IItemService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/IItemService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/IItemService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Items/ItemService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Github/NetTechnicalTask/NetTechnicalTask/NetTechnicalTask-main/DotNetInterview.Tests/ItemsTests/ItemServiceTests.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -108,7 +114,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704648842466</updated>
-      <workItem from="1704648844308" duration="3545000" />
+      <workItem from="1704648844308" duration="7305000" />
     </task>
     <task id="LOCAL-00001" summary=".idea files">
       <option name="closed" value="true" />
@@ -150,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704651686328</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added working unit tests">
+      <option name="closed" value="true" />
+      <created>1704652973466</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704652973466</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,7 +178,8 @@
     <MESSAGE value="Add interface definitions on IItemService.cs&#10;Implement IItemService.cs on ItemService.cs&#10;Add both to DI container" />
     <MESSAGE value="Added test definitions into the ItemServiceTests.cs" />
     <MESSAGE value="Add failing unit tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add failing unit tests" />
+    <MESSAGE value="Added working unit tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added working unit tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
