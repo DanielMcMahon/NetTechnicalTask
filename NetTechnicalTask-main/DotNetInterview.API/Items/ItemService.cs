@@ -29,12 +29,12 @@ public class ItemService : IItemService
         throw new NotImplementedException();
     }
 
-    public Task UpdateItemAsync(Item item)
+    public Task<Item> UpdateItemAsync(Item item)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteItemAsync(Guid id)
+    public Task<bool> DeleteItemAsync(Guid id)
     {
         throw new NotImplementedException();
     }

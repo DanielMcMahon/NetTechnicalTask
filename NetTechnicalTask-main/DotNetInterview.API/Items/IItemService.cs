@@ -7,6 +7,6 @@ public interface IItemService
     Task<IReadOnlyList<Item>> GetItemsAsync();
     Task<Item> GetItemByIdAsync(Guid id);
     Task<Item> CreateItemAsync(Item item);
-    Task UpdateItemAsync(Item item);
-    Task DeleteItemAsync(Guid id);
+    Task<Item> UpdateItemAsync(Item item);
+    Task<bool> DeleteItemAsync(Guid id);
 }

@@ -19,3 +19,5 @@ R
 "DotNetInterview.API/Domain/Item.cs,d\7\d7ef4e38bb44a082b14585a8f1cb80f00dde35c0
 N
 DotNetInterview.API/Program.cs,e\2\e22bc1b2c15ce6533d7d1a1488ec6cade21ec9d0
+O
+DotNetInterview.API/SeedData.cs,3\0\307d89deefe93d13a8202a23603b09ee18a935a9
