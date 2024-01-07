@@ -15,3 +15,7 @@ Y
 )DotNetInterview.API/Items/IItemService.cs,6\f\6fea6aeafa88ba88b16af19d6b1a8a4ad56abc57
 X
 (DotNetInterview.API/Items/ItemService.cs,1\3\13103e957bbde370a7bb65483f8c7a3d38f4f80d
+R
+"DotNetInterview.API/Domain/Item.cs,d\7\d7ef4e38bb44a082b14585a8f1cb80f00dde35c0
+N
+DotNetInterview.API/Program.cs,e\2\e22bc1b2c15ce6533d7d1a1488ec6cade21ec9d0
